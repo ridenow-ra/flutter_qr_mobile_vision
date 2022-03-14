@@ -212,8 +212,11 @@ public class QrMobileVisionPlugin implements MethodCallHandler, QrReaderCallback
     }
 
     @Override
-    public void qrRead(String data) {
-        channel.invokeMethod("qrRead", data);
+    public void qrRead(String str, byte[] data) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("str", str);
+        response.put("data", data);
+        channel.invokeMethod("qrRead", response);
     }
 
     @Override

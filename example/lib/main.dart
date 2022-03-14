@@ -55,9 +55,9 @@ class _MyAppState extends State<MyApp> {
                               error.toString(),
                               style: TextStyle(color: Colors.red),
                             ),
-                            qrCodeCallback: (code) {
+                            qrCodeCallback: (str, data) {
                               setState(() {
-                                qr = code;
+                                qr = str;
                               });
                             },
                             child: Container(

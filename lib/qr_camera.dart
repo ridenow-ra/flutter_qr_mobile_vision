@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class QrCamera extends StatefulWidget {
         super(key: key);
 
   final BoxFit fit;
-  final ValueChanged<String?> qrCodeCallback;
+  final void Function(String? str, Uint8List data) qrCodeCallback;
   final Widget? child;
   final WidgetBuilder notStartedBuilder;
   final WidgetBuilder offscreenBuilder;

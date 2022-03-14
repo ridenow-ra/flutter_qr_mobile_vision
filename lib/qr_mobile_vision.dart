@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 
@@ -83,7 +84,7 @@ class QrMobileVision {
 
 enum FrameRotation { none, ninetyCC, oneeighty, twoseventyCC }
 
-typedef void QRCodeHandler(String? qr);
+typedef void QRCodeHandler(String? str, Uint8List data);
 
 class QrChannelReader {
   QrChannelReader(this.channel) {
@@ -91,8 +92,8 @@ class QrChannelReader {
       switch (call.method) {
         case 'qrRead':
           if (qrCodeHandler != null) {
-            assert(call.arguments is String);
-            qrCodeHandler!(call.arguments);
+            assert(call.arguments is Map);
+            qrCodeHandler!(call.arguments['str'], call.arguments['data']);
           }
           break;
         default:
